@@ -10,7 +10,7 @@ $(BIN)/tsc:
 	npm install
 
 .npmignore: tsconfig.json
-	echo $(TYPESCRIPT) Makefile tsconfig.json build/ | tr ' ' '\n' > $@
+	echo $(TYPESCRIPT) Makefile tsconfig.json | tr ' ' '\n' > $@
 
 .gitignore: tsconfig.json
 	echo $(TYPESCRIPT:%.ts=%.js) build/ | tr ' ' '\n' > $@
