@@ -1,0 +1,23 @@
+{
+  "name": "pdfi-dev",
+  "version": "0.0.0",
+  "description": "Development tools for pdfi",
+  "keywords": [
+    "pdfi",
+    "development"
+  ],
+  "homepage": "https://github.com/chbrown/pdfi-dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chbrown/pdfi-dev.git"
+  },
+  "license": "MIT",
+  "author": "Christopher Brown <io@henrian.com> (http://henrian.com)",
+  "devDependencies": {
+    "declarations": "*",
+    "typescript": "*"
+  },
+  "scripts": {
+    "prepublish": "make"
+  }
+}
