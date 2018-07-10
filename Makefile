@@ -1,22 +1,8 @@
-BIN := node_modules/.bin
-TYPESCRIPT := $(shell jq -r '.files[]' tsconfig.json | grep -Fv .d.ts)
 # the order of GLYPHLISTS matters, so we can't just use $(wildcard encoding/*glyphlist.txt)
 GLYPHLISTS := encoding/cmr-glyphlist.txt encoding/additional_glyphlist.txt \
               encoding/texglyphlist.txt encoding/truetype_glyphlist.txt encoding/glyphlist.txt
 
-all: $(TYPESCRIPT:%.ts=%.js) build/glyphmaps.ts build/glyphlist.ts .npmignore .gitignore
-
-$(BIN)/tsc:
-	npm install
-
-.npmignore: tsconfig.json
-	echo $(TYPESCRIPT) Makefile tsconfig.json | tr ' ' '\n' > $@
-
-.gitignore: tsconfig.json
-	echo $(TYPESCRIPT:%.ts=%.js) build/ | tr ' ' '\n' > $@
-
-%.js: %.ts $(BIN)/tsc
-	$(BIN)/tsc
+all: build/glyphmaps.ts build/glyphlist.ts
 
 encoding/glyphlist.txt:
 	# glyphlist.txt is pure ASCII
@@ -33,11 +19,11 @@ encoding/truetype_glyphlist.txt: encoding/truetype_post_format1-mapping.tsv
     grep -v ';$$' >$@
 
 # texglyphlist uses some unconventional characters, so we read the standard glyphlist last
-build/glyphlist.ts: $(GLYPHLISTS) index.js
+build/glyphlist.ts: $(GLYPHLISTS)
 	mkdir -p $(@D)
 	cat $(GLYPHLISTS) | node read_glyphlist.js >$@
 
-build/glyphmaps.ts: encoding/latin_charset.tsv index.js
+build/glyphmaps.ts: encoding/latin_charset.tsv
 	# encoding/latin_charset.tsv comes from PDF32000_2008.pdf: Appendix D.2
 	mkdir -p $(@D)
 	node read_charset.js <$< >$@

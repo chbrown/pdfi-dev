@@ -1,3 +1,2 @@
-index.ts
-Makefile
+*.ts
 tsconfig.json

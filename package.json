@@ -7,15 +7,12 @@
     "development"
   ],
   "homepage": "https://github.com/chbrown/pdfi-dev",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chbrown/pdfi-dev.git"
-  },
+  "repository": "git://github.com/chbrown/pdfi-dev.git",
   "license": "MIT",
   "author": "Christopher Brown <io@henrian.com> (http://henrian.com)",
   "devDependencies": {
-    "declarations": "*",
-    "typescript": "*"
+    "@types/node": "10.5.2",
+    "typescript": "2.9.2"
   },
   "scripts": {
     "prepublish": "make"
