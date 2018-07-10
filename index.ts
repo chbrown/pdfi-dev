@@ -57,8 +57,7 @@ export function parseGlyphlist(input: string): [string, string][] {
   .filter(line => line.trim().length > 0)
   .map(line => {
     const [glyphname, replacements] = line.split(';');
-    // TODO: remove type hint when TypeScript grows up and can actually infer
-    // tuples properly
-    return <[string, string]>[glyphname, replacements];
+    // TODO: remove type hint when TypeScript grows up and can actually infer tuples properly
+    return [glyphname, replacements] as [string, string];
   });
 }
