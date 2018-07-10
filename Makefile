@@ -6,7 +6,7 @@ all: build/glyphmaps.ts build/glyphlist.ts
 
 encoding/glyphlist.txt:
 	# glyphlist.txt is pure ASCII
-	curl -s http://partners.adobe.com/public/developer/en/opentype/glyphlist.txt >$@
+	curl -s https://raw.githubusercontent.com/adobe-type-tools/agl-aglfn/master/glyphlist.txt >$@
 
 encoding/additional_glyphlist.txt:
 	curl -s https://raw.githubusercontent.com/apache/pdfbox/trunk/pdfbox/src/main/resources/org/apache/pdfbox/resources/glyphlist/additional.txt > $@
