@@ -16,15 +16,15 @@ encoding/texglyphlist.txt:
 	curl -s https://www.tug.org/texlive/Contents/live/texmf-dist/fonts/map/glyphlist/texglyphlist.txt > $@
 
 encoding/truetype_glyphlist.txt: encoding/truetype_post_format1-mapping.tsv
-	paste -d ';' <(<$< cut -f 1 | xargs -n 1 printf 'G%02X\n') <(<$< cut -f 2 | node encode_glyphs.js) |\
+	paste -d ';' <(<$< cut -f 1 | xargs -n 1 printf 'G%02X\n') <(<$< cut -f 2 | node index encodeGlyphs) |\
     grep -v ';$$' >$@
 
 # texglyphlist uses some unconventional characters, so we read the standard glyphlist last
 build/glyphlist.ts: $(GLYPHLISTS)
 	mkdir -p $(@D)
-	cat $(GLYPHLISTS) | node read_glyphlist.js >$@
+	cat $(GLYPHLISTS) | node index readGlyphlist >$@
 
 build/glyphmaps.ts: encoding/latin_charset.tsv
 	# encoding/latin_charset.tsv comes from PDF32000_2008.pdf: Appendix D.2
 	mkdir -p $(@D)
-	node read_charset.js <$< >$@
+	node index readCharset <$< >$@
