@@ -1,3 +1,4 @@
+SHELL := bash
 # the order of GLYPHLISTS matters, so we can't just use $(wildcard encoding/*glyphlist.txt)
 GLYPHLISTS := encoding/cmr-glyphlist.txt encoding/additional_glyphlist.txt \
               encoding/texglyphlist.txt encoding/truetype_glyphlist.txt encoding/glyphlist.txt
